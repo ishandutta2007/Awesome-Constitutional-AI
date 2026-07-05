@@ -1,5 +1,7 @@
-# Awesome-Constitutional-AI
-## Constitutional AI: History, Progression, Variants, & Applications
+# 🚀 Awesome-Constitutional-AI
+
+![Banner](assets/banner.svg)
+## 📜 Constitutional AI: History, Progression, Variants, & Applications
 
 **Constitutional AI (CAI)** is an advanced post-training model alignment and safety engineering framework designed to steer Artificial Intelligence systems toward human-vetted behavioral principles using automated, scalable critique-correction loops. First pioneered and formalized by Yuntao Bai et al. at Anthropic in 2022 ("Constitutional AI: Harmlessness from AI Feedback"), Constitutional AI addresses a fundamental scalability bottleneck in traditional **Reinforcement Learning from Human Feedback (RLHF)** [INDEX: 11]. 
 
@@ -7,7 +9,7 @@ While classic RLHF requires human crowdsourcers to manually read and score milli
 
 ---
 
-## 1. The Macro Chronological Evolution
+## 🕰️ 1. The Macro Chronological Evolution
 
 The implementation of model alignment has transitioned from fragmented, human-scored toxic evaluations to prompt-level rules, self-critiquing feedback loops, and modern multi-modal foundation steering enclaves.
 
@@ -29,7 +31,7 @@ flowchart LR
 
 ---
 
-## 2. Core Functional & Algorithmic Variants
+## ⚙️ 2. Core Functional & Algorithmic Variants
 
 Constitutional AI frameworks are strictly categorized based on the architectural loss functions and feedback mechanics deployed to enforce the constitutional rules.
 
@@ -42,7 +44,7 @@ Constitutional AI frameworks are strictly categorized based on the architectural
 
 ---
 
-## 3. The Constitutional AI Generation Pipeline
+## 🏭 3. The Constitutional AI Generation Pipeline
 
 To automate model alignment safely, the infrastructure orchestrates a multi-stage data curation and preference tracking loop.
 
@@ -75,7 +77,7 @@ E --> F
 
 ---
 
-## 4. Production Engineering Challenges & Mitigations
+## ⚠️ 4. Production Engineering Challenges & Mitigations
 
 Deploying and scaling Constitutional AI pipelines across commercial cloud structures introduces severe capability drains and alignment vulnerabilities.
 
@@ -86,7 +88,7 @@ Deploying and scaling Constitutional AI pipelines across commercial cloud struct
 
 ---
 
-## 5. Frontier Real-World AI Infrastructure Applications
+## 🌍 5. Frontier Real-World AI Infrastructure Applications
 
 | Application Area | Details | Year First Used | Paper Link |
 | --- | --- | --- | --- |
@@ -96,7 +98,7 @@ Deploying and scaling Constitutional AI pipelines across commercial cloud struct
 
 ---
 
-## References
+## 📚 References
 1. Ouyang, L., et al. (2022). Training language models to follow instructions with human feedback. *Advances in Neural Information Processing Systems (NeurIPS)*, 35, 27730-27744 [INDEX: 11].
 2. Bai, Y., et al. (2022). Constitutional AI: Harmlessness from AI feedback. *arXiv preprint arXiv:2212.08073*.
 3. Rafailov, R., et al. (2023). Direct preference optimization: Your language model is secretly a reward model. *Advances in Neural Information Processing Systems (NeurIPS)* [INDEX: 11].
