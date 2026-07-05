@@ -13,7 +13,11 @@ The implementation of model alignment has transitioned from fragmented, human-sc
 
 
 ```mermaid
-[Crowdsourced RLHF (2019-2022)] ───> [Constitutional AI / RLAIF (2022)] ───> [Self-Correction & Thinking (2024)] ───> [Dictionary Steering Enclaves (Present)](Psychologically Taxing Manual Labor)       (Automated Principle-Guided Feedback)         (Internalized RL Backtracking Loops)         (Monosemantic Concept Clamping Matrix)
+flowchart LR
+    A["Crowdsourced RLHF (2019–2022)<br/>(Human Preference Annotation)"]
+    --> B["Constitutional AI / RLAIF (2022)<br/>(Principle-Guided AI Feedback)"]
+    --> C["Reasoning & Self-Correction (2024)<br/>(Inference-Time Deliberation)"]
+    --> D["Mechanistic Steering (Present)<br/>(Sparse Feature-Based Model Control)"]
 ```
 
 *   **The Manual Crowdsourced Alignment Era (Traditional RLHF, ~2019–2022)**
@@ -36,18 +40,18 @@ The implementation of model alignment has transitioned from fragmented, human-sc
 
 Constitutional AI frameworks are strictly categorized based on the architectural loss functions and feedback mechanics deployed to enforce the constitutional rules.
 
-### A. Supervised Constitutional AI (Critique-Revision SFT)
-*   **Mechanism:** Generates data-level modifications before RL training occurs. The model reads a prompt from a harmful dataset, outputs a raw toxic text string, evaluates its own text against a specific constitutional principle (e.g., *"Critique the response to ensure it does not facilitate illegal acts"*), and rewrites the passage.
-*   **Pros:** Outputs an exceptionally clean, instruction-following supervised dataset that anchors standard grammatical syntax perfectly.
+- ### A. Supervised Constitutional AI (Critique-Revision SFT)
+	*   **Mechanism:** Generates data-level modifications before RL training occurs. The model reads a prompt from a harmful dataset, outputs a raw toxic text string, evaluates its own text against a specific constitutional principle (e.g., *"Critique the response to ensure it does not facilitate illegal acts"*), and rewrites the passage.
+	*   **Pros:** Outputs an exceptionally clean, instruction-following supervised dataset that anchors standard grammatical syntax perfectly.
 
-### B. Reinforcement Learning from AI Feedback (RLAIF Preference Modeling)
-*   **Mechanism:** Replaces the classic human-derived reward model [INDEX: 11]. A pure text-conditioned language model reads a pair of responses ($y_w, y_l$) alongside a constitutional axis, outputting normalized token log-probabilities to indicate which response follows the rule more closely. This probability vector directly updates a preference reward model [INDEX: 11].
+- ### B. Reinforcement Learning from AI Feedback (RLAIF Preference Modeling)
+	*   **Mechanism:** Replaces the classic human-derived reward model [INDEX: 11]. A pure text-conditioned language model reads a pair of responses ($y_w, y_l$) alongside a constitutional axis, outputting normalized token log-probabilities to indicate which response follows the rule more closely. This probability vector directly updates a preference reward model [INDEX: 11].
 
-### C. Direct Constitutional Preference Optimization (Constitutional DPO)
-*   **Mechanism:** Eliminates the physical memory requirement to host a separate reward network in GPU VRAM [INDEX: 11]. It maps the constitutional AI feedback datasets straight to a binary cross-entropy loss function [INDEX: 11], using the active model's own implicit token logits to calculate preference deltas natively [INDEX: 11].
+- ### C. Direct Constitutional Preference Optimization (Constitutional DPO)
+	*   **Mechanism:** Eliminates the physical memory requirement to host a separate reward network in GPU VRAM [INDEX: 11]. It maps the constitutional AI feedback datasets straight to a binary cross-entropy loss function [INDEX: 11], using the active model's own implicit token logits to calculate preference deltas natively [INDEX: 11].
 
-### D. Multi-Constitutional Hypernetworks
-*   **Mechanism:** Implements dynamic, adjustable alignment. It trains a secondary, conditioning network to output localized parameter adjustments on-the-fly based on conflicting goals. Users can balance parameters dynamically along a **Pareto Frontier**—sliding a scale from "Maximum Safety Refusal" to "Maximum Creative Helpfulness" based on enterprise deployment requirements.
+- ### D. Multi-Constitutional Hypernetworks
+	*   **Mechanism:** Implements dynamic, adjustable alignment. It trains a secondary, conditioning network to output localized parameter adjustments on-the-fly based on conflicting goals. Users can balance parameters dynamically along a **Pareto Frontier**—sliding a scale from "Maximum Safety Refusal" to "Maximum Creative Helpfulness" based on enterprise deployment requirements.
 
 ---
 
@@ -57,7 +61,24 @@ To automate model alignment safely, the infrastructure orchestrates a multi-stag
 
 
 ```mermaid
-The Two-Stage Constitutional CAI Loop[Phase 1: Supervised Fine-Tuning][Harmful Prompt Seed] ───> [Generate Toxic Draft] ───> [Apply Constitutional Critique] ───> [Execute Safe Revision] ───> [Train SFT Model]│[Phase 2: Reinforcement Learning]                                                                                         ▼[Update Active Policy] <─── [Optimize via PPO/DPO] <─── [Score Choices via AI Feedback] <─── [Train Preference Model] <──┘
+flowchart TB
+
+subgraph SFT["Phase 1: Supervised Fine-Tuning"]
+    A["Harmful Prompt"]
+    --> B["Generate Initial Response"]
+    --> C["Constitutional Critique"]
+    --> D["Safe Revision"]
+    --> E["Train SFT Model"]
+end
+
+subgraph RL["Phase 2: Reinforcement Learning"]
+    F["Sample Model Responses"]
+    --> G["AI Feedback & Preference Scoring"]
+    --> H["Preference Optimization<br/>(PPO / DPO / Related Methods)"]
+    --> I["Update Policy"]
+end
+
+E --> F
 ```
 
 *   **Constitutional Prompt Registries**
